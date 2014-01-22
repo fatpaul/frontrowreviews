@@ -3,11 +3,17 @@
     "-//Puppy Crawl//DTD Import Control 1.1//EN"
     "http://www.puppycrawl.com/dtds/import_control_1_1.dtd">
 
-<import-control pkg="com.youngstrategieslimited.frontrow.core">
+<import-control pkg="com.youngstrategieslimited.frontrow">
 	
-	<disallow class="java\.awt.*" regex="true" />
-	<allow class="java\.*" local-only="true" regex="true" />
-
+    <subpackage name="core">
+		<disallow class="java\.awt.*" regex="true" />
+		<allow class="java\.*" local-only="true" regex="true" />
+	</subpackage>
+	
+   	<subpackage name="rest">
+  	    <allow pkg="javax"/>
+   	</subpackage>
+    
 	<!-- 
 	<allow pkg="antlr" />
 	<allow pkg="com.google.common.base" />

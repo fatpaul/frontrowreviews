@@ -1,6 +1,35 @@
 <html>
 <head>
 <title>Front Row Reviews - Add Movie</title>
+
+<script lang="JavaScript" src="js/external/jquery-2.0.3.min.js"></script>
+
+<script>
+
+	function addMovieFromFormData(){
+		
+		$("#addMovieStatus").html("Saving...");
+	  	
+		var movie = {
+			title: $('#title').val(), 
+			description: $('#description').val()
+		};
+		
+		$.ajax({
+			dataType: "json",
+	  		type: "POST",
+	  		url: "rest/movie",
+	  		contentType: "application/json",
+	  		data: JSON.stringify(movie),
+		})
+	  	.done(function( response ) {
+	    	$("#addMovieStatus").html(response.responseText);
+	  	});
+	
+	}
+
+</script>
+
 </head>
 <body>
 	<center>
@@ -8,8 +37,14 @@
 	</center>
 
 	<h2>Add a movie</h2>
-
-
-
+	
+	<table>
+		<tr><td>Title:</td><td><input id="title" type="text" size="50"></input></td></tr>
+		<tr><td>Description:</td><td><textarea id="description" cols="50" rows="10"></textarea></td></tr>
+		<tr><td>&nbsp;</td><td><input id="addMovieBtn" type="button" onclick="addMovieFromFormData()" value="Add Movie"></input></td></tr>
+	</table>
+	
+	<div id="addMovieStatus"></div>
+	
 </body>
 </html>

@@ -1,0 +1,34 @@
+
+
+
+
+/*
+    def "add a new movie title"() {
+        when:
+        go()
+        
+        and:
+        waitFor { $("a.addMovieButton").displayed }
+        
+  		and:
+        $("a.addMovieButton").click()
+
+        then:
+        title == "Front Row Reviews - Add Movie"
+        
+        when:{
+     	   	// set title/description
+       		$("input", id: "title").value("Star Trek into darkness")
+        	$("textarea", id: "description").value("just brill!")
+        
+        	// click add
+        	$("#addMovieBtn").click()
+        }
+        
+        then:{
+        	// check that added message is displayed
+        	$("#addMovieStatus") == "Movie added : Star Trek into darkness, just brill!"
+    	}
+    }
+    */
+}

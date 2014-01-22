@@ -1,18 +1,3 @@
-/*
- * Copyright 2011 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 import geb.spock.GebReportingSpec
 
 import spock.lang.*
@@ -27,35 +12,29 @@ class FrontRowReviewSpec extends GebReportingSpec {
         then:
         title == "Front Row Reviews"
     }
-
-    def "add a new movie title"() {
+    
+        def "add a new movie title"() {
         when:
-        go()
+        	go()
         
         and:
-        waitFor { $("a.addMovieButton").displayed }
+        	waitFor { $("a.addMovieButton").displayed }
         
   		and:
-        $("a.addMovieButton").click()
+        	$("a.addMovieButton").click()
 
         then:
-        title == "Front Row Reviews - Add Movie"
-    }
-    
-    /*
-    def "search for wikipedia"() {
-        given:
-        q = "wikipedia"
-        
-        and:
-        waitFor { btnG().displayed }
+        	title == "Front Row Reviews - Add Movie"
         
         when:
-        btnG().click()
+     	   	// set title/description
+       		$("input", id: "title").value("Star Trek into darkness")
+        	$("textarea", id: "description").value("just brill!")
+        
+        	// click add
+        	$("#addMovieBtn").click()
         
         then:
-        waitFor { title.endsWith("Google Search") }
+        	waitFor { $("#addMovieStatus").text() == "Movie saved : Star Trek into darkness - just brill!" }
     }
-    */
-    
 }
