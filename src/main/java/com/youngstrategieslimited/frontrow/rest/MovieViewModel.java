@@ -2,6 +2,8 @@ package com.youngstrategieslimited.frontrow.rest;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.youngstrategieslimited.frontrow.core.movie.Movie;
+
 @XmlRootElement
 public class MovieViewModel {
 
@@ -25,6 +27,10 @@ public class MovieViewModel {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Movie createDomainModel() {
+		return new Movie(title, description);
 	}
 
 }
