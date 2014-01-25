@@ -13,11 +13,19 @@ import com.youngstrategieslimited.frontrow.core.movie.MovieRespository;
 @Path("/movie")
 public class MovieResource {
 
-	private MovieRespository movieRespository = new InMemoryMovieRepository();
+	private MovieRespository movieRespository;
+
+	public MovieResource(MovieRespository movieRespository){
+		this.movieRespository = movieRespository;
+	}
+	
+	public MovieResource(){
+		this(new InMemoryMovieRepository());
+	}
 	
 	@POST
 	@Consumes("application/json")
-	public Response saveMoviewDetails(MovieViewModel movieViewModel) {
+	public Response saveMovieDetails(MovieViewModel movieViewModel) {
 
 		Movie movie = movieViewModel.createDomainModel();
 		MovieKey movieKey = movie.save(movieRespository);
