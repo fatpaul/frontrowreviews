@@ -22,7 +22,7 @@
 	  		data: JSON.stringify(movie),
 		})
 	  	.done(function( response ) {
-	    	$("#addMovieStatus").html(response.responseText);
+	    	$("#addMovieStatus").html(response.url);
 	  	});
 	
 	}
@@ -43,7 +43,7 @@
 		<tr><td>Ê</td><td><input type="button" value="Add Movie" onclick="addMovieFromFormData()" id="addMovieBtn" /></td></tr>
 	</tbody></table>
 	
-	<div id="addMovieStatus">Star Trek into darkness - just brill!</div>
+	<div id="addMovieStatus">/rest/movie/1</div>
 	
 
 </body></html>

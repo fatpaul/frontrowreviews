@@ -35,6 +35,6 @@ class FrontRowReviewSpec extends GebReportingSpec {
         	$("#addMovieBtn").click()
         
         then:
-        	waitFor { $("#addMovieStatus").text() == "Star Trek into darkness - just brill!" }
+        	waitFor { $("#addMovieStatus").text() == "/rest/movie/1" }
     }
 }

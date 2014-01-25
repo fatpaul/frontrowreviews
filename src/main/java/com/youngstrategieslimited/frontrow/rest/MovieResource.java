@@ -22,25 +22,9 @@ public class MovieResource {
 		Movie movie = movieViewModel.createDomainModel();
 		MovieKey movieKey = movie.save(movieRespository);
 		
-		StringBuilder responseMessage = new StringBuilder();
-		responseMessage.append("{");
-		appendJsonAttribute(responseMessage, "url", movieKey.appendKeyTo("/rest/movie/"));
-		responseMessage.append(",");
-		appendJsonAttribute(responseMessage, "responseText",movieViewModel.getTitle() + " - " 
-				+ movieViewModel.getDescription());
-		responseMessage.append("}");
-
-		System.out.println(responseMessage.toString());
-
-		return Response.status(201).entity(responseMessage.toString()).build();
-	}
-	
-	private void appendJsonAttribute(StringBuilder builder, String attribute, String value){
-		builder.append("\"");
-		builder.append(attribute);
-		builder.append("\":\"");
-		builder.append(value);
-		builder.append("\"");
+		ResourceIdentifier resourceIdentifier = new ResourceIdentifier();
+		resourceIdentifier.setUrl(movieKey.appendKeyTo("/rest/movie/"));
 		
+		return Response.status(201).entity(resourceIdentifier).build();
 	}
 }
