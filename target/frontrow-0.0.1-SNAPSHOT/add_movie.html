@@ -5,23 +5,29 @@
 <script lang="JavaScript" src="js/external/jquery-2.0.3.min.js"></script>
 <script>
 	function addMovieFromFormData() {
-
-		$("#addMovieStatus").html("Saving...");
-
-		var movie = {
-			title : $('#title').val(),
-			description : $('#description').val()
-		};
-
-		$.ajax({
-			dataType : "json",
-			type : "POST",
-			url : "rest/movie",
-			contentType : "application/json",
-			data : JSON.stringify(movie),
-		}).done(function(response) {
-			$("#addMovieStatus").html(response.url);
-		});
+		
+		var emailAddress = $("#emailAddress").val();
+		if(emailAddress !== ""){
+			
+			$("#addMovieStatus").html("Saving...");
+	
+			var movie = {
+				title : $('#title').val(),
+				description : $('#description').val()
+			};
+	
+			$.ajax({
+				dataType : "json",
+				type : "POST",
+				url : "rest/movie",
+				contentType : "application/json",
+				data : JSON.stringify(movie),
+			}).done(function(response) {
+				$("#addMovieStatus").html(response.url);
+			});
+		} else {
+			alert("Please enter an email address to add a movie.");
+		}
 
 	}
 </script>

@@ -27,7 +27,7 @@ class FrontRowReviewSpec extends GebReportingSpec {
 		title == "Front Row Reviews - Add Movie"
 
 		when:
-		// set title/description
+		$("input", id: "emailAddress").value("paul@movies.com")
 		$("input", id: "title").value("Star Trek into darkness")
 		$("textarea", id: "description").value("just brill!")
 

@@ -15,8 +15,12 @@
 
   // Ignore browsers without touch support
   if (!$.support.touch) {
+	  window.console.log("touch is not enabled");
     return;
   }
+  
+  window.console.log("touch enabled for this device");
+  
 
   var mouseProto = $.ui.mouse.prototype,
       _mouseInit = mouseProto._mouseInit,
@@ -29,6 +33,9 @@
    */
   function simulateMouseEvent (event, simulatedType) {
 
+	  window.console.log("simulating a mouse event for "+event);
+	    
+	  
     // Ignore multi-touch events
     if (event.originalEvent.touches.length > 1) {
       return;
