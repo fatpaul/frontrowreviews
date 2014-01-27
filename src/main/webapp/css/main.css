@@ -11,15 +11,6 @@ body {
 .headerClass {
 	background: midnightblue;
 	padding: 12px;
-	
-	/*
-	
-	thistle
-	whitesmoke
-	cornflowerblue
-	midnightblue
-	
-	*/
 }
 
 .headerLinks {
@@ -69,4 +60,5 @@ body {
 
 .moviesTable td {
 	padding:5px;
+	vertical-align: top;
 }

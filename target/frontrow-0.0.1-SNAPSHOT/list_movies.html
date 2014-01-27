@@ -37,9 +37,14 @@
 		cell.innerHTML = rowData.title;
 		row.appendChild(cell);
 		cell = document.createElement("td");
-		cell.innerHTML = "<a class=\"button\" href=\"#\">Review</a>";
+		cell.innerHTML = "<a id='addReview_"+rowData.title.replace(/ /g,"_")+"' class=\"button\" href=\"javascript:reviewMovie('"+rowData.title+"')\">Add Review</a>";
 		row.appendChild(cell);
 		table.appendChild(row);
+	}
+	
+	function reviewMovie(title){
+		sessionStorage.movieTitle=title;
+		window.location.href="review_movie.html"
 	}
 	
 </script>

@@ -14,7 +14,7 @@ public class InMemoryMovieRepository implements MovieRespository{
 	@Override
 	public MovieKey save(Movie movie) {
 		movieStore.add(movie);
-		return new MovieKey(movieStore.size());
+		return new MovieKey(movie);
 	}
 
 	@Override

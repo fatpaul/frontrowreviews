@@ -2,10 +2,10 @@ package com.youngstrategieslimited.frontrow.core.movie;
 
 public class MovieKey {
 
-	private long id = -1;
+	private String id = null;
 
-	public MovieKey(long id) {
-		this.id = id;
+	public MovieKey(Movie movie) {
+		this.id = movie.getTitle();
 	}
 
 	public String appendKeyTo(String resource) {

@@ -36,7 +36,7 @@ class FrontRowReviewSpec extends GebReportingSpec {
 
 		then:
 		waitFor {
-			$("#addMovieStatus").text() == "/rest/movie/1"
+			$("#addMovieStatus").text() == "/rest/movie/Star Trek into darkness"
 		}
 
 		// now get the list of movies and make sure that it is there
@@ -51,9 +51,25 @@ class FrontRowReviewSpec extends GebReportingSpec {
 
 		and:
 		waitFor {
-
 			$(".moviesTable").find("td").text() == "Star Trek into darkness"
-
 		}
+		
+		// now create a review
+		$("#addReview_Star_Trek_into_darkness").click()
+		
+		then:
+		title == "Front Row Reviews - Review Movie"
+		
+		when:
+		$("textarea", id: "review").value("great film")
+
+		// click add
+		$("#addMovieReviewBtn").click()
+
+		then:
+		waitFor {
+			$("#addReviewStatus").text() == "/rest/review/1"
+		}
+
 	}
 }

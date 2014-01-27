@@ -8,9 +8,9 @@ public class MovieKeyTest {
 	
 	@Test
 	public void movieKeyAppendsToString(){
-		MovieKey movieKey = new MovieKey(342L);
+		MovieKey movieKey = new MovieKey(new Movie("title","description"));
 		String url = movieKey.appendKeyTo("baseurl:");
-		Assert.assertEquals("baseurl:342",url);
+		Assert.assertEquals("baseurl:title",url);
 	}
 
 }

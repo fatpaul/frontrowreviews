@@ -1,46 +1,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
-<title>Front Row Reviews - Movies</title>
+<title>Front Row Reviews - Review Movie</title>
 <link type="text/css" href="css/main.css" rel="stylesheet" />
 <script lang="JavaScript" src="js/external/jquery-2.0.3.min.js"></script>
 <script>
-	function addMovieFromFormData() {
-		$.ajax({
-			type : "GET",
-			url : "rest/movie",
-			contentType : "application/json",
-		}).done(function(response) {
-			if(response){
-				addToTable(response.movieViewModel);
-			}
-		});
-	}
 
-	function addToTable(data) {
-		var table = document.createElement("table");
-		table.setAttribute("class", "moviesTable");
+	$(function() {
+		$("#movieTitle").html(sessionStorage.movieTitle);
+	});
+
+	function addMovieReview() {
 		
-		if(!data.length){
-			addRow(table,data);
+		var emailAddress = $("#emailAddress").val();
+		if(emailAddress !== ""){
+			
+			$("#addReviewStatus").html("Saving...");
+	
+			var review = {
+				title : sessionStorage.movieTitle,
+				review : $('#review').val()
+			};
+	
+			$.ajax({
+				dataType : "json",
+				type : "POST",
+				url : "rest/review",
+				contentType : "application/json",
+				data : JSON.stringify(review),
+			}).done(function(response) {
+				$("#addReviewStatus").html(response.url);
+			});
 		} else {
-			for (var i = 0; i &lt; data.length; i++) {
-				var rowData = data[i];
-				addRow(table,rowData);
-			}
+			alert("Please enter an email address to review a movie.");
 		}
-		$('#tableLocation').append(table);
 	}
-	
-	function addRow(table, rowData){
-		var row = document.createElement("tr");
-		var cell = document.createElement("td");
-		cell.innerHTML = rowData.title;
-		row.appendChild(cell);
-		cell = document.createElement("td");
-		cell.innerHTML = "&lt;a class=\"button\" href=\"#\"&gt;Review&lt;/a&gt;";
-		row.appendChild(cell);
-		table.appendChild(row);
-	}
-	
 </script>
 
 </head>
@@ -53,8 +45,8 @@
 </div>
 <div class="headerLinks">
 	<a href="index.html" id="homeNavButton" class="button">Home</a> <a href="list_movies.html" id="listMoviesNavButton" class="button">List
-		Movies</a> <a href="add_movie.html" id="addMovieNavButton" class="button">Add
-		Movie</a> <input type="text" placeholder="Enter Email Address" onchange="storeInSession();" id="emailAddress" size="30" class="emailAddressFld" />
+		movies</a> <a href="add_movie.html" id="addMovieNavButton" class="button">Add
+		movie</a> <input type="text" placeholder="Enter Email Address" onchange="storeInSession();" id="emailAddress" size="30" class="emailAddressFld" />
 
 	<script>
 		if (sessionStorage.emailAddress !== "") {
@@ -73,16 +65,29 @@
 	<script>
 		$("#header-nav").load("/components/header.html");
 	</script>
+
 	<div class="contentClass">
 
-		<h2>Movie list:</h2>
+		<h2>Add a movie review</h2>
 
-		<div id="tableLocation"><table class="moviesTable"><tr><td>Star Trek into darkness</td><td><a href="#" class="button">Review</a></td></tr></table></div>
-		<script>
-			addMovieFromFormData();
-		</script>
+		<table>
+			<tbody><tr>
+				<td>Movie title:</td>
+				<td><h2 id="movieTitle">Star Trek into darkness</h2></td>
+			</tr>
+			<tr>
+				<td>Your Review:</td>
+				<td><textarea rows="10" cols="50" id="review"></textarea></td>
+			</tr>
+			<tr>
+				<td>Ê</td>
+				<td><input type="button" value="Add Review" onclick="addMovieReview()" id="addMovieReviewBtn" /></td>
+			</tr>
+		</tbody></table>
 
-		<div id="addMovieStatus"></div>
+		<div id="addReviewStatus">/rest/review/1</div>
+
 	</div>
+
 
 </body></html>

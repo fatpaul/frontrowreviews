@@ -18,7 +18,7 @@ public class MovieTest {
 	public void saveMovieCallsRepository(){
 		Movie movie = new Movie("movie title","description of movie");
 		
-		Mockito.when(movieRespository.save(movie)).thenReturn(new MovieKey(1L));
+		Mockito.when(movieRespository.save(movie)).thenReturn(new MovieKey(new Movie("","")));
 		
 		Assert.assertNotNull(movie.save(movieRespository));
 		

@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Front Row Reviews - Review Movie</title>
+<link rel="stylesheet" href="css/main.css" type="text/css" />
+<script lang="JavaScript" src="js/external/jquery-2.0.3.min.js"></script>
+<script>
+
+	$(function() {
+		$("#movieTitle").html(sessionStorage.movieTitle);
+	});
+
+	function addMovieReview() {
+		
+		var emailAddress = $("#emailAddress").val();
+		if(emailAddress !== ""){
+			
+			$("#addReviewStatus").html("Saving...");
+	
+			var review = {
+				title : sessionStorage.movieTitle,
+				review : $('#review').val()
+			};
+	
+			$.ajax({
+				dataType : "json",
+				type : "POST",
+				url : "rest/review",
+				contentType : "application/json",
+				data : JSON.stringify(review),
+			}).done(function(response) {
+				$("#addReviewStatus").html(response.url);
+			});
+		} else {
+			alert("Please enter an email address to review a movie.");
+		}
+	}
+</script>
+
+</head>
+<body>
+
+	<div id="header-nav"></div>
+
+	<script>
+		$("#header-nav").load("/components/header.html");
+	</script>
+
+	<div class="contentClass">
+
+		<h2>Add a movie review</h2>
+
+		<table>
+			<tr>
+				<td>Movie title:</td>
+				<td><h2 id="movieTitle"></h2></td>
+			</tr>
+			<tr>
+				<td>Your Review:</td>
+				<td><textarea id="review" cols="50" rows="10"></textarea></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><input id="addMovieReviewBtn" type="button"
+					onclick="addMovieReview()" value="Add Review"></input></td>
+			</tr>
+		</table>
+
+		<div id="addReviewStatus"></div>
+
+	</div>
+
+</body>
+</html>

@@ -7,8 +7,8 @@ import com.youngstrategieslimited.frontrow.core.movie.Movie;
 @XmlRootElement
 public class MovieViewModel {
 
-	private String title;
-	private String description;
+	private String title = "";
+	private String description = "";
 
 	public MovieViewModel(Movie movie) {
 		this.description = movie.getDescription();
@@ -37,5 +37,4 @@ public class MovieViewModel {
 	public Movie createDomainModel() {
 		return new Movie(title, description);
 	}
-
 }
