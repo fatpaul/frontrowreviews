@@ -1,11 +1,25 @@
 <div class="headerClass">
-<center>
-	<img src="images/frontrow-logo.png" border="0" />
-</center>
+	<center>
+		<img src="images/frontrow-logo.png" border="0" />
+	</center>
 </div>
 <div class="headerLinks">
-<a class="button" id="homeNavButton" href="index.html">Home</a>
-<a class="button" id="listMoviesNavButton" href="list_movies.html">List Movies</a>
-<a class="button" id="addMovieNavButton" href="add_movie.html">Add Movie</a>
-<input class="emailAddressFld" type="text" size="30" id="emailAddress" placeholder="Enter Email Address"></input>
+	<a class="button" id="homeNavButton" href="index.html">Home</a> <a
+		class="button" id="listMoviesNavButton" href="list_movies.html">List
+		Movies</a> <a class="button" id="addMovieNavButton" href="add_movie.html">Add
+		Movie</a> <input class="emailAddressFld" type="text" size="30"
+		id="emailAddress" onchange="storeInSession();"
+		placeholder="Enter Email Address"></input>
+
+	<script>
+		if (sessionStorage.emailAddress !== "") {
+			$("#emailAddress").val(sessionStorage.emailAddress);
+		}
+
+		function storeInSession() {
+			sessionStorage.emailAddress = $("#emailAddress").val();
+
+		}
+	</script>
+
 </div>
