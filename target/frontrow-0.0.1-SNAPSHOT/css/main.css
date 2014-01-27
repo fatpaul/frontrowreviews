@@ -1,22 +1,66 @@
-
-
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+body {
+	font-family: Tahoma, Verdana, Segoe, sans-serif;
+	font-size: 0.75em;
+	margin: 0px;
+	background-color: white;
+}
 
+.headerClass {
+	background: midnightblue;
+	padding: 12px;
+	
+	/*
+	
+	thistle
+	whitesmoke
+	cornflowerblue
+	midnightblue
+	
+	*/
+}
 
+.headerLinks {
+	color: black;
+	text-decoration: none;
+	border: 1px solid black;
+	padding: 2px;
+	background: #7290B7; /* for non-css3 browsers */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B1C9FF',
+		endColorstr='#7290B7'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#B1C9FF),
+		to(#7290B7)); /* for webkit browsers */
+	background: -moz-linear-gradient(top, #B1C9FF, #7290B7);
+	/* for firefox 3.6+ */
+}
 
+.contentClass {
+	margin: 10px;
+}
 
+.button {
+	font-family: Arial;
+	background: linear-gradient(to bottom, #FCB97E 0%, #F07605 100%) repeat
+		scroll 0 0 transparent;
+	border: 1px solid #F07605;
+	border-radius: 0.5em 0.5em 0.5em 0.5em;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+	color: #FFFFFF;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 13px;
+	outline: medium none;
+	padding: 5px 8px !important;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+	vertical-align: baseline;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.moviesTable td {
+	padding:5px;
+}

@@ -1,0 +1,51 @@
+body{
+	background:white;
+	margin:0;
+	padding:0;
+	-moz-user-select: none;
+	-webkit-user-select:none;
+	user-select :none;
+}
+
+div.coverFlow{
+	position:absolute;
+	overflow:hidden;
+	padding:10px;
+	cursor:pointer;
+}
+
+div.snapshot{
+	position: absolute;
+	text-align: center;
+	color:black;
+	text-shadow: 0 0 0.2em gray;
+	margin-top:5px;
+}
+
+.reflectBelow {
+-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(90%, transparent), to(rgba(255,255,255,0.2)));
+}
+
+img.adjusted {
+    position: absolute;
+    z-index: -1;
+    width: 90%;
+    top: 0;
+    left: 5%;
+}
+
+div#coverFlow1{
+    width: 90%;
+    height: 50%;
+    left: 5%;
+    top: 5%;
+	font-family:Candara;
+}
+
+div#coverFlow2{
+    width: 95%;
+    height: 30%;
+    left: 0%;
+    top: 65%;
+	font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+}

@@ -1,12 +1,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <title>Front Row Reviews</title>
+<link type="text/css" href="css/main.css" rel="stylesheet" />
+<script lang="JavaScript" src="js/external/jquery-2.0.3.min.js"></script>
 </head>
 <body>
-	<center>
-		<img border="0" src="images/frontrow-logo.png" />
-	</center>
-	
-	<a href="add_movie.html" class="addMovieButton">Add Movie</a>
-	
+
+	<div id="header-nav"><div class="headerClass">
+<center>
+	<img border="0" src="images/frontrow-logo.png" />
+</center>
+</div>
+<div class="headerLinks">
+<a href="index.html" id="homeNavButton" class="button">Home</a>
+<a href="list_movies.html" id="listMoviesNavButton" class="button">List Movies</a>
+<a href="add_movie.html" id="addMovieNavButton" class="button">Add Movie</a>
+</div>
+</div>
+
+	<script>
+		$("#header-nav").load("/components/header.html");
+	</script>
+	<div class="contentClass">
+
+		<h2>Home</h2>
+	</div>
 
 </body></html>

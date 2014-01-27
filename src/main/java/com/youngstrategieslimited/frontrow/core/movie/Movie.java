@@ -9,8 +9,16 @@ public class Movie {
 		this.title = title;
 		this.description = description;
 	}
-
+	
 	public MovieKey save(MovieRespository movieRespository) {
 		return movieRespository.save(this);
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public String getDescription() {
+		return this.description;
 	}
 }

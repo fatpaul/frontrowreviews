@@ -10,6 +10,11 @@ public class MovieViewModel {
 	private String title;
 	private String description;
 
+	public MovieViewModel(Movie movie) {
+		this.description = movie.getDescription();
+		this.title = movie.getTitle();
+	}
+
 	public MovieViewModel() {
 	}
 

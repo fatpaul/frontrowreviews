@@ -9,12 +9,17 @@ import com.youngstrategieslimited.frontrow.core.movie.MovieRespository;
 
 public class InMemoryMovieRepository implements MovieRespository{
 
-	private List<Movie> movieStore = new ArrayList<Movie>();
+	private static List<Movie> movieStore = new ArrayList<Movie>();
 	
 	@Override
 	public MovieKey save(Movie movie) {
 		movieStore.add(movie);
 		return new MovieKey(movieStore.size());
+	}
+
+	@Override
+	public List<Movie> list() {
+		return movieStore;
 	}
 
 }

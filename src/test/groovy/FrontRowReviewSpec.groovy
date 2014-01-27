@@ -4,37 +4,56 @@ import spock.lang.*
 
 @Stepwise
 class FrontRowReviewSpec extends GebReportingSpec {
-    
-    def "go to front row reviews home page and check core details"() {
-        when:
-        go()
 
-        then:
-        title == "Front Row Reviews"
-    }
-    
-        def "add a new movie title"() {
-        when:
-        	go()
-        
-        and:
-        	waitFor { $("a.addMovieButton").displayed }
-        
-  		and:
-        	$("a.addMovieButton").click()
+	def "go to front row reviews home page and check core details"() {
+		when:
+		go()
 
-        then:
-        	title == "Front Row Reviews - Add Movie"
-        
-        when:
-     	   	// set title/description
-       		$("input", id: "title").value("Star Trek into darkness")
-        	$("textarea", id: "description").value("just brill!")
-        
-        	// click add
-        	$("#addMovieBtn").click()
-        
-        then:
-        	waitFor { $("#addMovieStatus").text() == "/rest/movie/1" }
-    }
+		then:
+		title == "Front Row Reviews"
+	}
+
+	def "add a new movie title and see it in the list of movies"() {
+		when:
+		go()
+
+		and:
+		waitFor {  $("#addMovieNavButton").displayed  }
+
+		and:
+		$("#addMovieNavButton").click()
+
+		then:
+		title == "Front Row Reviews - Add Movie"
+
+		when:
+		// set title/description
+		$("input", id: "title").value("Star Trek into darkness")
+		$("textarea", id: "description").value("just brill!")
+
+		// click add
+		$("#addMovieBtn").click()
+
+		then:
+		waitFor {
+			$("#addMovieStatus").text() == "/rest/movie/1"
+		}
+
+		// now get the list of movies and make sure that it is there
+		when:
+		waitFor {  $("#listMoviesNavButton").displayed  }
+		
+		and:
+		$("#listMoviesNavButton").click()
+
+		then:
+		title == "Front Row Reviews - Movies"
+
+		and:
+		waitFor {
+
+			$(".moviesTable").find("td").text() == "Star Trek into darkness"
+
+		}
+	}
 }
