@@ -1,11 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
 <title>Front Row Reviews - Review Movie</title>
 <link type="text/css" href="css/main.css" rel="stylesheet" />
-<script lang="JavaScript" src="js/external/jquery-2.0.3.min.js"></script>
+<script src="js/external/jquery-2.0.3.min.js"></script>
 <script>
 
 	$(function() {
-		$("#movieTitle").html(sessionStorage.movieTitle);
+		$("#movieTitle").html(sessionStorage.movieKey);
 	});
 
 	function addMovieReview() {
@@ -73,7 +73,7 @@
 		<table>
 			<tbody><tr>
 				<td>Movie title:</td>
-				<td><h2 id="movieTitle">Star Trek into darkness</h2></td>
+				<td><h2 id="movieTitle">1</h2></td>
 			</tr>
 			<tr>
 				<td>Your Review:</td>

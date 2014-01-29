@@ -2,7 +2,7 @@
 <head>
 <title>Front Row Reviews - Movies</title>
 <link rel="stylesheet" href="css/main.css" type="text/css" />
-<script lang="JavaScript" src="js/external/jquery-2.0.3.min.js"></script>
+<script src="js/external/jquery-2.0.3.min.js"></script>
 <script>
 	function addMovieFromFormData() {
 		$.ajax({
@@ -37,13 +37,13 @@
 		cell.innerHTML = rowData.title;
 		row.appendChild(cell);
 		cell = document.createElement("td");
-		cell.innerHTML = "<a id='addReview_"+rowData.title.replace(/ /g,"_")+"' class=\"button\" href=\"javascript:reviewMovie('"+rowData.title+"')\">Add Review</a>";
+		cell.innerHTML = "<a id='addReview_"+rowData.key+"' class=\"button\" href=\"javascript:reviewMovie('"+rowData.key+"')\">Add Review</a>";
 		row.appendChild(cell);
 		table.appendChild(row);
 	}
 	
-	function reviewMovie(title){
-		sessionStorage.movieTitle=title;
+	function reviewMovie(key){
+		sessionStorage.movieKey=key;
 		window.location.href="review_movie.html"
 	}
 	

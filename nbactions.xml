@@ -64,4 +64,12 @@
                 <goal>appengine:update</goal>
             </goals>
         </action>
+    <action>
+            <actionName>CUSTOM-Frontrow RUN</actionName>
+            <displayName>Frontrow RUN</displayName>
+            <goals>
+                <goal>package</goal>
+                <goal>appengine:devserver</goal>
+            </goals>
+        </action>
 </actions>

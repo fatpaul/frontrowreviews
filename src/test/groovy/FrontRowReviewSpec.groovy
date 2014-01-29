@@ -55,7 +55,7 @@ class FrontRowReviewSpec extends GebReportingSpec {
 		}
 		
 		// now create a review
-		$("#addReview_Star_Trek_into_darkness").click()
+		$("#addReview_1").click()
 		
 		then:
 		title == "Front Row Reviews - Review Movie"

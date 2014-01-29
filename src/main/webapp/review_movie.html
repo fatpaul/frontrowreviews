@@ -2,11 +2,11 @@
 <head>
 <title>Front Row Reviews - Review Movie</title>
 <link rel="stylesheet" href="css/main.css" type="text/css" />
-<script lang="JavaScript" src="js/external/jquery-2.0.3.min.js"></script>
+<script src="js/external/jquery-2.0.3.min.js"></script>
 <script>
 
 	$(function() {
-		$("#movieTitle").html(sessionStorage.movieTitle);
+		$("#movieTitle").html(sessionStorage.movieKey);
 	});
 
 	function addMovieReview() {

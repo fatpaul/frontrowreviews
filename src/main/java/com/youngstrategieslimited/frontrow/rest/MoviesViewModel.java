@@ -21,7 +21,7 @@ public class MoviesViewModel {
 		}
 	}
 
-	public void add(MovieViewModel movie) {
+	private void add(MovieViewModel movie) {
 		movies.add(movie);
 	}
 
