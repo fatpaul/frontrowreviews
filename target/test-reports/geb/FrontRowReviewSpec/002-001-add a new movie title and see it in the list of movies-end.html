@@ -4,10 +4,6 @@
 <script src="js/external/jquery-2.0.3.min.js"></script>
 <script>
 
-	$(function() {
-		$("#movieTitle").html(sessionStorage.movieKey);
-	});
-
 	function addMovieReview() {
 		
 		var emailAddress = $("#emailAddress").val();
@@ -16,7 +12,7 @@
 			$("#addReviewStatus").html("Saving...");
 	
 			var review = {
-				title : sessionStorage.movieTitle,
+				key : sessionStorage.movieKey,
 				review : $('#review').val()
 			};
 	
@@ -72,22 +68,16 @@
 
 		<table>
 			<tbody><tr>
-				<td>Movie title:</td>
-				<td><h2 id="movieTitle">1</h2></td>
-			</tr>
-			<tr>
 				<td>Your Review:</td>
+            </tr><tr>
 				<td><textarea rows="10" cols="50" id="review"></textarea></td>
 			</tr>
 			<tr>
-				<td> </td>
 				<td><input type="button" value="Add Review" onclick="addMovieReview()" id="addMovieReviewBtn" /></td>
 			</tr>
 		</tbody></table>
 
-		<div id="addReviewStatus">/rest/review/1</div>
-
+        <div id="addReviewStatus">/rest/review/1</div>
 	</div>
-
 
 </body></html>
