@@ -1,0 +1,13 @@
+
+
+- better of injecting the repository in the resource, what am i missing?
+- tried to get away with not having an id is the movie, failed so going to change that
+- geb bit too ambitious, should of stayed with what i know bit off too much
+- checkstyle import control seems to work well
+- movie has one or more reviews
+- most time spent around the core not in it
+- need some info about why multitier architecture is poor
+	- not just 2 ports, lots confuses and blurs the lines
+	- natural sepage into other layers
+	- difficult to test and extend
+	

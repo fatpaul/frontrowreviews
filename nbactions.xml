@@ -49,4 +49,19 @@
             <goal>appengine:update_queues</goal>
         </goals>
     </action>
+    <action>
+            <actionName>CUSTOM-Frontrow integration tests</actionName>
+            <displayName>Frontrow integration tests</displayName>
+            <goals>
+                <goal>integration-test</goal>
+            </goals>
+        </action>
+    <action>
+            <actionName>CUSTOM-Frontrow Deploy</actionName>
+            <displayName>Frontrow Deploy</displayName>
+            <goals>
+                <goal>integration-test</goal>
+                <goal>appengine:update</goal>
+            </goals>
+        </action>
 </actions>

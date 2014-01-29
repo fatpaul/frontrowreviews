@@ -15,7 +15,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.sun.jersey.api.JResponse;
 import com.youngstrategieslimited.frontrow.core.movie.Movie;
-import com.youngstrategieslimited.frontrow.core.movie.MovieKey;
+import com.youngstrategieslimited.frontrow.core.movie.ResourceKey;
 import com.youngstrategieslimited.frontrow.core.movie.MovieRespository;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -28,7 +28,7 @@ public class MovieResourceTest {
 	public void testSaveMovieDetails() throws Exception {
 
 		Movie movie = new Movie("title","description");
-		MovieKey movieKey = new MovieKey(movie);
+		ResourceKey movieKey = new ResourceKey("");
 		Mockito.when(movieRespository.save(Mockito.any(Movie.class)))
 				.thenReturn(movieKey);
 

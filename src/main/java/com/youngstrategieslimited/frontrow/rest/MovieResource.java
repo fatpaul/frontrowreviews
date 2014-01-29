@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
 import com.sun.jersey.api.JResponse;
 import com.youngstrategieslimited.frontrow.adapters.movierepository.InMemoryMovieRepository;
 import com.youngstrategieslimited.frontrow.core.movie.Movie;
-import com.youngstrategieslimited.frontrow.core.movie.MovieKey;
+import com.youngstrategieslimited.frontrow.core.movie.ResourceKey;
 import com.youngstrategieslimited.frontrow.core.movie.MovieRespository;
 
 @Path("/movie")
@@ -33,10 +33,10 @@ public class MovieResource {
 	public Response saveMovieDetails(MovieViewModel movieViewModel) {
 
 		Movie movie = movieViewModel.createDomainModel();
-		MovieKey movieKey = movie.save(movieRespository);
+		ResourceKey resourceKey = movie.save(movieRespository);
 
 		ResourceIdentifier resourceIdentifier = new ResourceIdentifier();
-		resourceIdentifier.setUrl(movieKey.appendKeyTo("/rest/movie/"));
+		resourceIdentifier.setUrl(resourceKey.appendKeyTo("/rest/movie/"));
 
 		return Response.status(201).entity(resourceIdentifier).build();
 	}

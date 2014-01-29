@@ -4,14 +4,16 @@ public class Movie {
 
 	private final String title;
 	private final String description;
+    private ResourceKey resourceKey;
 
 	public Movie(String title, String description) {
 		this.title = title;
 		this.description = description;
 	}
 	
-	public MovieKey save(MovieRespository movieRespository) {
-		return movieRespository.save(this);
+	public ResourceKey save(MovieRespository movieRespository) {
+        resourceKey = movieRespository.save(this);
+		return resourceKey;
 	}
 
 	public String getTitle() {
@@ -21,4 +23,8 @@ public class Movie {
 	public String getDescription() {
 		return this.description;
 	}
+
+    public ResourceKey getKey() {
+        return resourceKey;
+    }
 }

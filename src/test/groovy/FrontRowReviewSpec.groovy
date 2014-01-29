@@ -36,7 +36,7 @@ class FrontRowReviewSpec extends GebReportingSpec {
 
 		then:
 		waitFor {
-			$("#addMovieStatus").text() == "/rest/movie/Star Trek into darkness"
+			$("#addMovieStatus").text() == "/rest/movie/1"
 		}
 
 		// now get the list of movies and make sure that it is there
