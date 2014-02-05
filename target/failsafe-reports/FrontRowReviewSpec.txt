@@ -1,4 +1,9 @@
 -------------------------------------------------------------------------------
 Test set: FrontRowReviewSpec
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.369 sec - in FrontRowReviewSpec
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 24.849 sec <<< FAILURE! - in FrontRowReviewSpec
+add a new movie title and see it in the list of movies(FrontRowReviewSpec)  Time elapsed: 10.193 sec  <<< ERROR!
+geb.waiting.WaitTimeoutException: condition did not pass in 5.0 seconds (failed with exception)
+	at FrontRowReviewSpec.add a new movie title and see it in the list of movies_closure7(FrontRowReviewSpec.groovy:84)
+	at FrontRowReviewSpec.add a new movie title and see it in the list of movies_closure7(FrontRowReviewSpec.groovy)
+

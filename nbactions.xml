@@ -72,4 +72,26 @@
                 <goal>appengine:devserver</goal>
             </goals>
         </action>
+    <action>
+            <actionName>CUSTOM-Frontrow - Code coverage</actionName>
+            <displayName>Frontrow - Code coverage</displayName>
+            <goals>
+                <goal>Cobertura:check</goal>
+            </goals>
+        </action>
+    <action>
+            <actionName>CUSTOM-Frontrow - Cobertura code coverage</actionName>
+            <displayName>Frontrow - Cobertura code coverage</displayName>
+            <goals>
+                <goal>cobertura:check</goal>
+            </goals>
+        </action>
+    <action>
+            <actionName>CUSTOM-EMMA and Cobertura</actionName>
+            <displayName>EMMA and Cobertura</displayName>
+            <goals>
+                <goal>emma:emma</goal>
+                <goal>cobertura:check</goal>
+            </goals>
+        </action>
 </actions>

@@ -4,7 +4,6 @@ import com.youngstrategieslimited.frontrow.adapters.movierepository.InMemoryMovi
 import com.youngstrategieslimited.frontrow.core.movie.MovieReview;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReviewRespository;
 import com.youngstrategieslimited.frontrow.core.movie.ResourceKey;
-import com.youngstrategieslimited.frontrow.core.movie.ResourceKeyFriend;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;

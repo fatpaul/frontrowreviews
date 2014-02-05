@@ -1,34 +1,79 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
-<title>Front Row Reviews - Review Movie</title>
+<title>Front Row Reviews - Movies</title>
 <link type="text/css" href="css/main.css" rel="stylesheet" />
 <script src="js/external/jquery-2.0.3.min.js"></script>
 <script>
-
-	function addMovieReview() {
-		
-		var emailAddress = $("#emailAddress").val();
-		if(emailAddress !== ""){
-			
-			$("#addReviewStatus").html("Saving...");
-	
-			var review = {
-				key : sessionStorage.movieKey,
-				review : $('#review').val()
-			};
-	
-			$.ajax({
-				dataType : "json",
-				type : "POST",
-				url : "rest/review",
-				contentType : "application/json",
-				data : JSON.stringify(review),
-			}).done(function(response) {
-				$("#addReviewStatus").html(response.url);
-			});
-		} else {
-			alert("Please enter an email address to review a movie.");
-		}
+	function addMovieFromFormData() {
+		$.ajax({
+			type : "GET",
+			url : "rest/movie",
+			contentType : "application/json",
+		}).done(function(response) {
+			if(response){
+				addToTable(response.movieViewModel);
+			}
+		});
 	}
+    
+    function addMovieReview(){
+ 		$.ajax({
+			type : "GET",
+			url : "rest/review",
+			contentType : "application/json",
+		}).done(function(response) {
+			if(response){
+				addToTable(response.movieViewModel);
+			}
+		});
+    }
+
+	function addToTable(data) {
+		var table = document.createElement("table");
+		table.setAttribute("class", "moviesTable");
+		
+		if(!data.length){
+			addMovie(table,data,{'reviews':[]});
+		} else {
+			for (var i = 0; i &lt; data.length; i++) {
+				var rowData = data[i];
+				addMovie(table,rowData,{'reviews':[]});
+			}
+		}
+		$('#tableLocation').append(table);
+	}
+	
+	function addMovie(table, movieDetails, reviewDetails){
+		var row = document.createElement("tr");
+		
+        var cell = document.createElement("td");
+		cell.innerHTML = movieDetails.title;
+		row.appendChild(cell);
+        
+		cell = document.createElement("td");
+		cell.innerHTML = "&lt;a id='addReview_"+movieDetails.key+
+                "' class=\"button\" href=\"javascript:reviewMovie('"+movieDetails.key+
+                "')\"&gt;Add Review&lt;/a&gt;";
+		row.appendChild(cell);
+        
+        cell = document.createElement("td");
+        
+        // extend to different table and reviewer
+        var reviews = "";
+        for(i =0;i&lt;reviewDetails.reviews.length;i++){
+            reviews += reviewDetails.reviews[i].text;
+        }
+        
+		cell.innerHTML = reviews;
+		row.appendChild(cell);
+        
+		table.appendChild(row);
+	}
+	
+	function reviewMovie(key){
+		sessionStorage.movieKey=key;
+		window.location.href="review_movie.html"
+	}
+	
 </script>
 
 </head>
@@ -61,23 +106,16 @@
 	<script>
 		$("#header-nav").load("/components/header.html");
 	</script>
-
 	<div class="contentClass">
 
-		<h2>Add a movie review</h2>
+		<h2>Movie list:</h2>
 
-		<table>
-			<tbody><tr>
-				<td>Your Review:</td>
-            </tr><tr>
-				<td><textarea rows="10" cols="50" id="review"></textarea></td>
-			</tr>
-			<tr>
-				<td><input type="button" value="Add Review" onclick="addMovieReview()" id="addMovieReviewBtn" /></td>
-			</tr>
-		</tbody></table>
+		<div id="tableLocation"><table class="moviesTable"><tr><td>Star Trek into darkness</td><td><a href="javascript:reviewMovie('1')" class="button" id="addReview_1">Add Review</a></td><td></td></tr></table></div>
+		<script>
+			addMovieFromFormData();
+		</script>
 
-        <div id="addReviewStatus">/rest/review/1</div>
+		<div id="addMovieStatus"></div>
 	</div>
 
 </body></html>

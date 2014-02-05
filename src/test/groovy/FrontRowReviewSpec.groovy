@@ -70,6 +70,19 @@ class FrontRowReviewSpec extends GebReportingSpec {
 		waitFor {
 			$("#addReviewStatus").text() == "/rest/review/1"
 		}
+           
+        // go back to the movie list page and make sure that the
+        // review we just added is displayed
+		when:
+		waitFor {  $("#listMoviesNavButton").displayed  }
+		
+		and:
+		$("#listMoviesNavButton").click()
+
+		then:
+		waitFor {
+            $("span", text: endsWith("great film")).size() == 1
+		}
 
 	}
 }

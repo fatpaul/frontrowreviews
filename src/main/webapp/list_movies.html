@@ -15,30 +15,58 @@
 			}
 		});
 	}
+    
+    function addMovieReview(){
+ 		$.ajax({
+			type : "GET",
+			url : "rest/review",
+			contentType : "application/json",
+		}).done(function(response) {
+			if(response){
+				addToTable(response.movieViewModel);
+			}
+		});
+    }
 
 	function addToTable(data) {
 		var table = document.createElement("table");
 		table.setAttribute("class", "moviesTable");
 		
 		if(!data.length){
-			addRow(table,data);
+			addMovie(table,data,{'reviews':[]});
 		} else {
 			for (var i = 0; i < data.length; i++) {
 				var rowData = data[i];
-				addRow(table,rowData);
+				addMovie(table,rowData,{'reviews':[]});
 			}
 		}
 		$('#tableLocation').append(table);
 	}
 	
-	function addRow(table, rowData){
+	function addMovie(table, movieDetails, reviewDetails){
 		var row = document.createElement("tr");
-		var cell = document.createElement("td");
-		cell.innerHTML = rowData.title;
+		
+        var cell = document.createElement("td");
+		cell.innerHTML = movieDetails.title;
 		row.appendChild(cell);
+        
 		cell = document.createElement("td");
-		cell.innerHTML = "<a id='addReview_"+rowData.key+"' class=\"button\" href=\"javascript:reviewMovie('"+rowData.key+"')\">Add Review</a>";
+		cell.innerHTML = "<a id='addReview_"+movieDetails.key+
+                "' class=\"button\" href=\"javascript:reviewMovie('"+movieDetails.key+
+                "')\">Add Review</a>";
 		row.appendChild(cell);
+        
+        cell = document.createElement("td");
+        
+        // extend to different table and reviewer
+        var reviews = "";
+        for(i =0;i<reviewDetails.reviews.length;i++){
+            reviews += reviewDetails.reviews[i].text;
+        }
+        
+		cell.innerHTML = reviews;
+		row.appendChild(cell);
+        
 		table.appendChild(row);
 	}
 	

@@ -15,4 +15,9 @@ public class InMemoryMovieReviewRepository implements MovieReviewRespository {
         movieReviewStore.add(movie);
         return new ResourceKey(Long.toString(movieReviewStore.size()));
     }
+
+    @Override
+    public List<MovieReview> list() {
+        return movieReviewStore;
+    }
 }
