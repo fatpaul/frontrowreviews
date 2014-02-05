@@ -8,7 +8,6 @@ public class ResourceKey {
 		this.id = id;
 	}
 
-    // TODO: double dispatch here?
 	public String appendKeyTo(String resource) {
 		return resource + this.id;
 	}

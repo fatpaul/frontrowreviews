@@ -1,5 +1,10 @@
 package com.youngstrategieslimited.frontrow.rest;
 
+import com.youngstrategieslimited.frontrow.adapters.movierepository.InMemoryMovieReviewRepository;
+import com.youngstrategieslimited.frontrow.core.movie.MovieReview;
+import com.youngstrategieslimited.frontrow.core.movie.MovieReviewRespository;
+import com.youngstrategieslimited.frontrow.core.movie.ResourceKey;
+import com.youngstrategieslimited.frontrow.core.movie.ResourceKeyFriend;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -8,18 +13,27 @@ import javax.ws.rs.core.Response;
 @Path("/review")
 public class MovieReviewResource {
 
-	public MovieReviewResource() {
-	}
+    private final MovieReviewRespository movieReviewRespository;
 
-	@POST
-	@Consumes("application/json")
-	public Response saveMovieReview() {
+    public MovieReviewResource() {
+        movieReviewRespository = new InMemoryMovieReviewRepository();
+    }
 
-        // need to pass ....
-        
-		ResourceIdentifier resourceIdentifier = new ResourceIdentifier();
-		resourceIdentifier.setUrl("/rest/review/1");
+    MovieReviewResource(MovieReviewRespository movieReviewRespository) {
+        this.movieReviewRespository = movieReviewRespository;
+    }
 
-		return Response.status(201).entity(resourceIdentifier).build();
-	}
+    @POST
+    @Consumes("application/json")
+    public Response saveMovieReview(MovieReviewViewModel movieReviewViewModel) {
+
+        MovieReview movieReview = movieReviewViewModel.createDomainModel();
+        ResourceKey movieReviewKey = movieReviewRespository.save(movieReview);
+
+        ResourceIdentifier resourceIdentifier = new ResourceIdentifier();
+
+        resourceIdentifier.setUrl(movieReviewKey.appendKeyTo("/rest/review/"));
+
+        return Response.status(201).entity(resourceIdentifier).build();
+    }
 }
