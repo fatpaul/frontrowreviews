@@ -36,7 +36,7 @@ class FrontRowReviewSpec extends GebReportingSpec {
 
 		then:
 		waitFor {
-			$("#addMovieStatus").text() == "/rest/movie/1"
+            $("#addMovieStatus", text: startsWith("/rest/movie/")).size() == 1
 		}
 
 		// now get the list of movies and make sure that it is there
@@ -55,7 +55,7 @@ class FrontRowReviewSpec extends GebReportingSpec {
 		}
 		
 		// now create a review
-		$("#addReview_1").click()
+        $("a", text: startsWith("Add Review")).click()
 		
 		then:
 		title == "Front Row Reviews - Review Movie"
@@ -68,7 +68,7 @@ class FrontRowReviewSpec extends GebReportingSpec {
 
 		then:
 		waitFor {
-			$("#addReviewStatus").text() == "/rest/review/1"
+            $("#addReviewStatus", text: startsWith("/rest/review/")).size() == 1
 		}
            
         // go back to the movie list page and make sure that the

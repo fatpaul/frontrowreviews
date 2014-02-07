@@ -10,11 +10,10 @@
 		var emailAddress = $("#emailAddress").val();
 		if(emailAddress !== ""){
 			
-			$("#addReviewStatus").html("Saving...");
-	
+			$("#addReviewStatus").html("Saving..."+sessionStorage.movieKey);
 			var review = {
-				key : sessionStorage.movieKey,
-				review : $('#review').val()
+				movieKey : sessionStorage.movieKey,
+				movieReviewText : $('#review').val()
 			};
 	
 			$.ajax({

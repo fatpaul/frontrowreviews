@@ -11,13 +11,23 @@ public class InMemoryMovieReviewRepository implements MovieReviewRespository {
     private static List<MovieReview> movieReviewStore = new ArrayList<MovieReview>();
 
     @Override
-    public ResourceKey save(MovieReview movie) {
-        movieReviewStore.add(movie);
-        return new ResourceKey(Long.toString(movieReviewStore.size()));
+    public ResourceKey save(MovieReview review) {
+        movieReviewStore.add(review);
+        ResourceKey movieKey = new ResourceKey(Long.toString(movieReviewStore.size()));
+        return movieKey;
     }
 
     @Override
-    public List<MovieReview> list() {
-        return movieReviewStore;
+    public List<MovieReview> findBy(ResourceKey movieKey) {
+
+        List<MovieReview> reviews = new ArrayList<MovieReview>();
+        for (MovieReview review : movieReviewStore) {
+            if (review.getMovieKey() != null && 
+                    review.getMovieKey().equals(movieKey)) {
+                reviews.add(review);
+            }
+        }
+
+        return reviews;
     }
 }

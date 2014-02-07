@@ -33,7 +33,8 @@ public class MovieResource {
 	public Response saveMovieDetails(MovieViewModel movieViewModel) {
 
 		Movie movie = movieViewModel.createDomainModel();
-		ResourceKey resourceKey = movie.save(movieRespository);
+		ResourceKey resourceKey = movie.getKey();
+        movie.save(movieRespository);
 
 		ResourceIdentifier resourceIdentifier = new ResourceIdentifier();
 		resourceIdentifier.setUrl(resourceKey.appendKeyTo("/rest/movie/"));

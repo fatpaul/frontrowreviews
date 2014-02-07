@@ -29,8 +29,6 @@ public class MovieResourceTest {
 
 		Movie movie = new Movie("title","description");
 		ResourceKey movieKey = new ResourceKey("");
-		Mockito.when(movieRespository.save(Mockito.any(Movie.class)))
-				.thenReturn(movieKey);
 
 		MovieResource movieResource = new MovieResource(movieRespository);
 		MovieViewModel movieViewModel = new MovieViewModel();

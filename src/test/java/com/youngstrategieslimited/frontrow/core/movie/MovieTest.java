@@ -17,28 +17,21 @@ public class MovieTest {
 	@Test
 	public void saveMovieCallsRepository(){
 		Movie movie = new Movie("movie title","description of movie");
-		
-		Mockito.when(movieRespository.save(movie)).thenReturn(new ResourceKey(""));
-		
-		Assert.assertNotNull(movie.save(movieRespository));
-		
+		movieRespository.save(movie);
 		Mockito.verify(movieRespository).save(movie);
 	}
 
 	@Test
-	public void newlyCreatedMovieHasNullKey(){
+	public void newlyCreatedMovieHasGeneratedKey(){
 		Movie movie = new Movie("movie title","description of movie");
-		Assert.assertNull(movie.getKey());
+		Assert.assertNotNull(movie.getKey());
 	}
 
     @Test
-	public void savedMovieHasValidKey(){
-		Movie movie = new Movie("movie title","description of movie");
-		
-		Mockito.when(movieRespository.save(movie)).thenReturn(new ResourceKey(""));
-		
+	public void movieCanBeCreatedWithUserDefinedKey(){
+        final ResourceKey resourceKey = new ResourceKey("1");
+		Movie movie = new Movie(resourceKey, "movie title","description of movie");
         movie.save(movieRespository);
-        
-		Assert.assertNotNull(movie.getKey());
+		Assert.assertEquals(resourceKey, movie.getKey());
 	}
 }

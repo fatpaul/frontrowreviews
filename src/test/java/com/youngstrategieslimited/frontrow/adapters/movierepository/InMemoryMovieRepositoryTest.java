@@ -14,7 +14,7 @@ public class InMemoryMovieRepositoryTest {
         inMemoryMovieRepository.save(new Movie("title", "description"));
         List<Movie> movies = inMemoryMovieRepository.list();
         
-		Assert.assertEquals(movies.get(0).getTitle(),"title");
-		Assert.assertEquals(movies.get(0).getDescription(),"description");
+		Assert.assertEquals("title", movies.get(0).getTitle());
+		Assert.assertEquals("description", movies.get(0).getDescription());
     }
 }

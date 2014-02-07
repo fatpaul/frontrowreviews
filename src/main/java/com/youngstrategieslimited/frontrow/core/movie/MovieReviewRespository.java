@@ -6,5 +6,5 @@ public interface MovieReviewRespository {
 
 	ResourceKey save(MovieReview movie);
 
-    List<MovieReview> list();
+    List<MovieReview> findBy(ResourceKey movieKey);
 }

@@ -1,8 +1,12 @@
 package com.youngstrategieslimited.frontrow.rest;
 
+import com.sun.jersey.api.JResponse;
+import com.youngstrategieslimited.frontrow.core.movie.Movie;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReview;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReviewRespository;
 import com.youngstrategieslimited.frontrow.core.movie.ResourceKey;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.core.Response;
 
 import junit.framework.Assert;
@@ -31,7 +35,7 @@ public class MovieReviewResourceTest {
 
         ResourceKey movieKey = new ResourceKey("1");
         String movieReviewText = "Movie review text";
-        MovieReviewViewModel review = new MovieReviewViewModel(movieKey, movieReviewText);
+        MovieReviewViewModel review = new MovieReviewViewModel("1", movieReviewText);
 
         Response saveMovieReviewResponse = movieReviewResource
                 .saveMovieReview(review);
@@ -41,6 +45,24 @@ public class MovieReviewResourceTest {
         ResourceIdentifier resourceIdentifier = (ResourceIdentifier) saveMovieReviewResponse
                 .getEntity();
 
-        Assert.assertTrue(resourceIdentifier.getUrl().equals("/rest/review/1"));
+        Assert.assertTrue(resourceIdentifier.getUrl().startsWith("/rest/review/"));
+    }
+
+    @Test
+    public void testFindAllReviewsForAMovie() throws Exception {
+
+        List<MovieReview> reviews = new ArrayList<MovieReview>();
+        final ResourceKey movieKey = new ResourceKey("21");
+        final String reviewText = "review of movie 21";
+        reviews.add(new MovieReview(movieKey, reviewText));
+
+        Mockito.when(movieReviewRespository.findBy(movieKey)).thenReturn(reviews);
+
+        MovieReviewResource movieReviewResource = new MovieReviewResource(movieReviewRespository);
+        JResponse<List<MovieReviewViewModel>> reviewsResponse = movieReviewResource.getAllReviewsForMovie("21");
+        List<MovieReviewViewModel> reviewEntity = reviewsResponse.getEntity();
+        Assert.assertEquals(reviewText, reviewEntity.get(0).getMovieReviewText());
+		Assert.assertEquals(movieKey, reviewEntity.get(0).getMovieKeyAsResource());
+
     }
 }

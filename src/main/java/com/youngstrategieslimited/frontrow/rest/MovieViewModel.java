@@ -10,6 +10,7 @@ public class MovieViewModel {
 	private String title = "";
 	private String description = "";
     private String key="";
+    private String urlToReviews = "";
 
 	public MovieViewModel(Movie movie) {
 		this.description = movie.getDescription();
@@ -18,6 +19,7 @@ public class MovieViewModel {
         // TODO: this isnt good, null checks - use double dispatch
         if(movie.getKey() != null){
             this.key = movie.getKey().appendKeyTo(this.key);
+            this.urlToReviews = movie.getKey().appendKeyTo("rest/review/");
         }
 	}
 
@@ -51,4 +53,12 @@ public class MovieViewModel {
 	public Movie createDomainModel() {
 		return new Movie(title, description);
 	}
+
+    public String getUrlToReviews() {
+        return urlToReviews;
+    }
+
+    public void setUrlToReviews(String urlToReviews) {
+        this.urlToReviews = urlToReviews;
+    }
 }

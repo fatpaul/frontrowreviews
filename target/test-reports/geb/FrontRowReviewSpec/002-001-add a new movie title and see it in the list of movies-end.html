@@ -15,14 +15,14 @@
 		});
 	}
     
-    function addMovieReview(){
+    function getMovieReviews(reviewUrl){
  		$.ajax({
 			type : "GET",
-			url : "rest/review",
+			url : reviewUrl,
 			contentType : "application/json",
 		}).done(function(response) {
 			if(response){
-				addToTable(response.movieViewModel);
+				window.console.log(response);
 			}
 		});
     }
@@ -50,23 +50,17 @@
 		row.appendChild(cell);
         
 		cell = document.createElement("td");
-		cell.innerHTML = "&lt;a id='addReview_"+movieDetails.key+
-                "' class=\"button\" href=\"javascript:reviewMovie('"+movieDetails.key+
+		cell.innerHTML = "&lt;a class=\"button\" href=\"javascript:reviewMovie('"+movieDetails.key+
                 "')\"&gt;Add Review&lt;/a&gt;";
 		row.appendChild(cell);
         
         cell = document.createElement("td");
-        
-        // extend to different table and reviewer
-        var reviews = "";
-        for(i =0;i&lt;reviewDetails.reviews.length;i++){
-            reviews += reviewDetails.reviews[i].text;
-        }
-        
-		cell.innerHTML = reviews;
+		cell.innerHTML = movieDetails.urlToReviews;
 		row.appendChild(cell);
         
 		table.appendChild(row);
+        
+        getMovieReviews(movieDetails.urlToReviews);
 	}
 	
 	function reviewMovie(key){
@@ -110,7 +104,7 @@
 
 		<h2>Movie list:</h2>
 
-		<div id="tableLocation"><table class="moviesTable"><tr><td>Star Trek into darkness</td><td><a href="javascript:reviewMovie('1')" class="button" id="addReview_1">Add Review</a></td><td></td></tr></table></div>
+		<div id="tableLocation"><table class="moviesTable"><tr><td>Star Trek into darkness</td><td><a href="javascript:reviewMovie('2a7a19e5-8caa-47c9-9e13-c3bf8c292b5c')" class="button">Add Review</a></td><td>rest/review/2a7a19e5-8caa-47c9-9e13-c3bf8c292b5c</td></tr></table></div>
 		<script>
 			addMovieFromFormData();
 		</script>

@@ -6,12 +6,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class MovieReviewViewModel {
-    private ResourceKey movieKey;
+    private String movieKey;
     private String movieReviewText;
 
-    public MovieReviewViewModel(ResourceKey movieKey, String movieReviewText) {
+    public MovieReviewViewModel(String movieKey, String movieReviewText) {
         this.movieKey = movieKey;
         this.movieReviewText = movieReviewText;
+    }
+
+    public MovieReviewViewModel(MovieReview movieReview) {
+        this.movieKey = movieReview.getMovieKey().appendKeyTo("");
+        this.movieReviewText = movieReview.getMovieReviewText();
     }
 
     // for jackson support
@@ -19,14 +24,18 @@ public class MovieReviewViewModel {
     }
 
     public MovieReview createDomainModel() {
-        return new MovieReview(getMovieKey(), getMovieReviewText());
+        return new MovieReview(new ResourceKey(movieKey), movieReviewText);
     }
 
-    public ResourceKey getMovieKey() {
+    public String getMovieKey() {
         return movieKey;
     }
 
-    public void setMovieKey(ResourceKey movieKey) {
+    public ResourceKey getMovieKeyAsResource() {
+        return new ResourceKey(movieKey);
+    }
+
+    public void setMovieKey(String movieKey) {
         this.movieKey = movieKey;
     }
 
