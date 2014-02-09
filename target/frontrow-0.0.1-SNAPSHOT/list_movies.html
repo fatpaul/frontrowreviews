@@ -1,94 +1,108 @@
 <html>
-<head>
-<title>Front Row Reviews - Movies</title>
-<link rel="stylesheet" href="css/main.css" type="text/css" />
-<script src="js/external/jquery-2.0.3.min.js"></script>
-<script>
-	function addMovieFromFormData() {
-		$.ajax({
-			type : "GET",
-			url : "rest/movie",
-			contentType : "application/json",
-		}).done(function(response) {
-			if(response){
-				addToTable(response.movieViewModel);
-			}
-		});
-	}
-    
-    function getMovieReviews(reviewUrl){
- 		$.ajax({
-			type : "GET",
-			url : reviewUrl,
-			contentType : "application/json",
-		}).done(function(response) {
-			if(response){
-				window.console.log(response);
-			}
-		});
-    }
+    <head>
+        <title>Front Row Reviews - Movies</title>
+        <link rel="stylesheet" href="css/main.css" type="text/css" />
+        <script src="js/external/jquery-2.0.3.min.js"></script>
+        <script>
+            function addMovieFromFormData() {
+                $.ajax({
+                    type: "GET",
+                    url: "rest/movie",
+                    contentType: "application/json",
+                }).done(function(response) {
+                    if (response) {
+                        addToTable(response.movieViewModel, '#tableLocation');
+                    }
+                });
+            }
 
-	function addToTable(data) {
-		var table = document.createElement("table");
-		table.setAttribute("class", "moviesTable");
-		
-		if(!data.length){
-			addMovie(table,data,{'reviews':[]});
-		} else {
-			for (var i = 0; i < data.length; i++) {
-				var rowData = data[i];
-				addMovie(table,rowData,{'reviews':[]});
-			}
-		}
-		$('#tableLocation').append(table);
-	}
-	
-	function addMovie(table, movieDetails, reviewDetails){
-		var row = document.createElement("tr");
-		
-        var cell = document.createElement("td");
-		cell.innerHTML = movieDetails.title;
-		row.appendChild(cell);
-        
-		cell = document.createElement("td");
-		cell.innerHTML = "<a class=\"button\" href=\"javascript:reviewMovie('"+movieDetails.key+
-                "')\">Add Review</a>";
-		row.appendChild(cell);
-        
-        cell = document.createElement("td");
-		cell.innerHTML = movieDetails.urlToReviews;
-		row.appendChild(cell);
-        
-		table.appendChild(row);
-        
-        getMovieReviews(movieDetails.urlToReviews);
-	}
-	
-	function reviewMovie(key){
-		sessionStorage.movieKey=key;
-		window.location.href="review_movie.html"
-	}
-	
-</script>
+            function getMovieReviews(key, reviewUrl) {
+                $.ajax({
+                    type: "GET",
+                    url: reviewUrl,
+                    contentType: "application/json",
+                }).done(function(response) {
+                    if (response) {
+                        window.console.log(response);
+                        addToTable(response.movieReviewViewModel, key);
+                    }
+                });
+            }
 
-</head>
-<body>
+            function addToTable(data, elementId) {
+                var table = document.createElement("table");
+                table.setAttribute("class", "moviesTable");
 
-	<div id="header-nav"></div>
+                if (!data.length) {
+                    addMovie(table, data);
+                } else {
+                    for (var i = 0; i < data.length; i++) {
+                        addMovie(table, data[i]);
+                    }
+                }
+                $(elementId).append(table);
+            }
 
-	<script>
-		$("#header-nav").load("/components/header.html");
-	</script>
-	<div class="contentClass">
+            function addMovie(table, movieDetails) {
+                var row = document.createElement("tr");
 
-		<h2>Movie list:</h2>
+                if (movieDetails.title) {
+                    var cell = document.createElement("td");
+                    cell.innerHTML = movieDetails.title;
+                    row.appendChild(cell);
 
-		<div id="tableLocation"></div>
-		<script>
-			addMovieFromFormData();
-		</script>
+                    cell = document.createElement("td");
+                    cell.innerHTML = "<a class=\"button\" href=\"javascript:reviewMovie('" + movieDetails.key +
+                            "')\">Add Review</a>";
+                    row.appendChild(cell);
 
-		<div id="addMovieStatus"></div>
-	</div>
-</body>
+                    cell = document.createElement("td");
+                    cell.innerHTML = "<a class=\"button\" href=\"javascript:showMovieReviews('" + movieDetails.key + "','" + movieDetails.urlToReviews +
+                            "')\">Show Reviews</a>";
+                    row.appendChild(cell);
+
+                    cell = document.createElement("td");
+                    cell.innerHTML = "<div id='" + movieDetails.key + "'></div>";
+                    row.appendChild(cell);
+                } else {
+                    var cell = document.createElement("td");
+                    cell.innerHTML = "<span>"+movieDetails.movieReviewText+"</span>";
+                    row.appendChild(cell);
+                }
+
+                table.appendChild(row);
+
+            }
+
+            function reviewMovie(key) {
+                sessionStorage.movieKey = key;
+                window.location.href = "review_movie.html"
+            }
+
+            function showMovieReviews(key, urlToReviews) {
+                getMovieReviews("#"+key, urlToReviews);
+            }
+
+        </script>
+
+    </head>
+    <body>
+
+        <div id="header-nav"></div>
+
+        <script>
+            $("#header-nav").load("/components/header.html");
+        </script>
+        <div class="contentClass">
+
+            <h2>Movie list:</h2>
+
+            <div id="tableLocation"></div>
+            <script>
+                addMovieFromFormData();
+            </script>
+
+            <div id="addMovieStatus"></div>
+        </div>
+    </body>
 </html>

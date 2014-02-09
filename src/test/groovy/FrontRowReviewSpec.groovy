@@ -79,6 +79,11 @@ class FrontRowReviewSpec extends GebReportingSpec {
 		and:
 		$("#listMoviesNavButton").click()
 
+		and:
+        waitFor {  $("a", text: startsWith("Show Reviews")).displayed  }
+  
+        $("a", text: startsWith("Show Reviews")).click()
+        
 		then:
 		waitFor {
             $("span", text: endsWith("great film")).size() == 1

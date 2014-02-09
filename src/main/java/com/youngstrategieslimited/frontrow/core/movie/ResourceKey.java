@@ -21,14 +21,13 @@ public class ResourceKey {
     @Override
     public boolean equals(Object that){
         
-        if(id == null && that == null){
+        if(id == null && ((ResourceKey)that).id == null){
             return true;
         }
-        if(id == null || that == null){
+        if(id == null || ((ResourceKey)that).id == null){
             return false;
         }
         
-        String thatId = ((ResourceKey)that).appendKeyTo("");
-        return id.equals(thatId);
+        return id.equals(((ResourceKey)that).id);
     }
 }
