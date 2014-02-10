@@ -1,7 +1,6 @@
 package com.youngstrategieslimited.frontrow.rest;
 
 import com.sun.jersey.api.JResponse;
-import com.youngstrategieslimited.frontrow.core.movie.Movie;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReview;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReviewRespository;
 import com.youngstrategieslimited.frontrow.core.movie.ResourceKey;
@@ -35,7 +34,8 @@ public class MovieReviewResourceTest {
 
         ResourceKey movieKey = new ResourceKey("1");
         String movieReviewText = "Movie review text";
-        MovieReviewViewModel review = new MovieReviewViewModel("1", movieReviewText);
+        String reviewerEmailAddress = "pauls@nightmare.com";
+        MovieReviewViewModel review = new MovieReviewViewModel("1", movieReviewText, reviewerEmailAddress);
 
         Response saveMovieReviewResponse = movieReviewResource
                 .saveMovieReview(review);
@@ -54,7 +54,8 @@ public class MovieReviewResourceTest {
         List<MovieReview> reviews = new ArrayList<MovieReview>();
         final ResourceKey movieKey = new ResourceKey("21");
         final String reviewText = "review of movie 21";
-        reviews.add(new MovieReview(movieKey, reviewText));
+        final String reviewerEmailAddress = "pauls@hotmail.com";
+        reviews.add(new MovieReview(movieKey, reviewText, reviewerEmailAddress));
 
         Mockito.when(movieReviewRespository.findBy(movieKey)).thenReturn(reviews);
 

@@ -13,7 +13,8 @@ public class InMemoryMovieReviewRepositoryTest {
 
         InMemoryMovieReviewRepository inMemoryMovieReviewRepository = new InMemoryMovieReviewRepository();
         ResourceKey movieKey = new ResourceKey("1");
-        inMemoryMovieReviewRepository.save(new MovieReview(movieKey, "review"));
+        String reviewerEmailAddress = "pauls@wibble.com";
+        inMemoryMovieReviewRepository.save(new MovieReview(movieKey, "review",reviewerEmailAddress));
         List<MovieReview> moviesReview = inMemoryMovieReviewRepository.findBy(movieKey);
 
         Assert.assertTrue(moviesReview.size()==1);

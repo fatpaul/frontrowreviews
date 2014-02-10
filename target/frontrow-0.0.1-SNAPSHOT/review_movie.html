@@ -13,7 +13,8 @@
 			$("#addReviewStatus").html("Saving..."+sessionStorage.movieKey);
 			var review = {
 				movieKey : sessionStorage.movieKey,
-				movieReviewText : $('#review').val()
+				movieReviewText : $('#review').val(),
+                reviewerEmailAddress:emailAddress
 			};
 	
 			$.ajax({
