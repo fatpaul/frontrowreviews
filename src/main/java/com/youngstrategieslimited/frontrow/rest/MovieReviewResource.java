@@ -2,7 +2,6 @@ package com.youngstrategieslimited.frontrow.rest;
 
 import com.sun.jersey.api.JResponse;
 import com.youngstrategieslimited.frontrow.adapters.movierepository.InMemoryMovieReviewRepository;
-import com.youngstrategieslimited.frontrow.core.movie.Movie;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReview;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReviewRespository;
 import com.youngstrategieslimited.frontrow.core.movie.ResourceKey;
