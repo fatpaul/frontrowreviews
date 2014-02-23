@@ -20,18 +20,4 @@ public class MovieTest {
 		movieRespository.save(movie);
 		Mockito.verify(movieRespository).save(movie);
 	}
-
-	@Test
-	public void newlyCreatedMovieHasGeneratedKey(){
-		Movie movie = new Movie("movie title","description of movie");
-		Assert.assertNotNull(movie.getKey());
-	}
-
-    @Test
-	public void movieCanBeCreatedWithUserDefinedKey(){
-        final ResourceKey resourceKey = new ResourceKey("1");
-		Movie movie = new Movie(resourceKey, "movie title","description of movie");
-        movie.save(movieRespository);
-		Assert.assertEquals(resourceKey, movie.getKey());
-	}
 }

@@ -7,4 +7,6 @@ public interface MovieRespository {
 	void save(Movie movie);
 
 	List<Movie> list();
+    
+    ResourceKey getKey(Movie movie);
 }

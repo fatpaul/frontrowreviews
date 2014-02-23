@@ -1,8 +1,5 @@
 package com.youngstrategieslimited.frontrow.shell.rest;
 
-import com.youngstrategieslimited.frontrow.shell.rest.MovieReviewViewModel;
-import com.youngstrategieslimited.frontrow.shell.rest.ResourceIdentifier;
-import com.youngstrategieslimited.frontrow.shell.rest.MovieReviewResource;
 import com.sun.jersey.api.JResponse;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReview;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReviewRespository;
@@ -29,13 +26,11 @@ public class MovieReviewResourceTest {
     public void testSaveMovieReview() throws Exception {
 
         MovieReviewResource movieReviewResource = new MovieReviewResource(movieReviewRespository);
-
         ResourceKey movieReviewKey = new ResourceKey("1");
-
-        Mockito.when(movieReviewRespository.save(Mockito.any(MovieReview.class)))
-                .thenReturn(movieReviewKey);
-
         ResourceKey movieKey = new ResourceKey("1");
+        
+        Mockito.when(movieReviewRespository.getKey(Mockito.any(MovieReview.class))).thenReturn(movieReviewKey);
+        
         String movieReviewText = "Movie review text";
         String reviewerEmailAddress = "pauls@nightmare.com";
         MovieReviewViewModel review = new MovieReviewViewModel("1", movieReviewText, reviewerEmailAddress);

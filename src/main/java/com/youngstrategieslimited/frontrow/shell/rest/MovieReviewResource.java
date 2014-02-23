@@ -17,14 +17,13 @@ import javax.ws.rs.core.Response;
 @Path("/review")
 public class MovieReviewResource {
 
-    private final MovieReviewRespository movieReviewRespository;
+    private static MovieReviewRespository movieReviewRespository = new InMemoryMovieReviewRepository();
 
-    public MovieReviewResource() {
-        movieReviewRespository = new InMemoryMovieReviewRepository();
+    public MovieReviewResource(){
     }
-
+    
     MovieReviewResource(MovieReviewRespository movieReviewRespository) {
-        this.movieReviewRespository = movieReviewRespository;
+        MovieReviewResource.movieReviewRespository = movieReviewRespository;
     }
 
     @POST
@@ -33,10 +32,10 @@ public class MovieReviewResource {
 
         MovieReview movieReview = movieReviewViewModel.createDomainModel();
         movieReview.save(movieReviewRespository);
-
+        ResourceKey key = movieReviewRespository.getKey(movieReview);
         ResourceIdentifier resourceIdentifier = new ResourceIdentifier();
 
-        resourceIdentifier.setUrl(movieReview.getKey().appendKeyTo("/rest/review/"));
+        resourceIdentifier.setUrl(key.appendKeyTo("/rest/review/"));
 
         return Response.status(201).entity(resourceIdentifier).build();
     }

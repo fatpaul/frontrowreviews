@@ -31,7 +31,9 @@ public class MovieResourceTest {
 	public void testSaveMovieDetails() throws Exception {
 
 		Movie movie = new Movie("title","description");
-		ResourceKey movieKey = new ResourceKey("");
+		ResourceKey movieKey = new ResourceKey("21");
+        
+        Mockito.when(movieRespository.getKey(Mockito.any(Movie.class))).thenReturn(movieKey);
 
 		MovieResource movieResource = new MovieResource(movieRespository);
 		MovieViewModel movieViewModel = new MovieViewModel();

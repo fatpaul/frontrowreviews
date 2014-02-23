@@ -18,14 +18,13 @@ import com.youngstrategieslimited.frontrow.core.movie.MovieRespository;
 @Path("/movie")
 public class MovieResource {
 
-	private MovieRespository movieRespository;
+	private static MovieRespository movieRespository = new InMemoryMovieRepository();
 
+    public MovieResource(){
+    }
+    
 	public MovieResource(MovieRespository movieRespository) {
 		this.movieRespository = movieRespository;
-	}
-
-	public MovieResource() {
-		this(new InMemoryMovieRepository());
 	}
 
 	@POST
@@ -33,8 +32,8 @@ public class MovieResource {
 	public Response saveMovieDetails(MovieViewModel movieViewModel) {
 
 		Movie movie = movieViewModel.createDomainModel();
-		ResourceKey resourceKey = movie.getKey();
         movie.save(movieRespository);
+        ResourceKey resourceKey = movieRespository.getKey(movie);
 
 		ResourceIdentifier resourceIdentifier = new ResourceIdentifier();
 		resourceIdentifier.setUrl(resourceKey.appendKeyTo("/rest/movie/"));
@@ -45,7 +44,7 @@ public class MovieResource {
 	@GET
 	@Produces("application/json")
 	public JResponse<List<MovieViewModel>> getAllMovies() {
-		MoviesViewModel movies = new MoviesViewModel(movieRespository.list());
+		MoviesViewModel movies = new MoviesViewModel(movieRespository, movieRespository.list());
 		return JResponse.ok(movies.getMovies()).build();
 	}
 }

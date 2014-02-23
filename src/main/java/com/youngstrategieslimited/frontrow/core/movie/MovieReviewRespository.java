@@ -4,7 +4,9 @@ import java.util.List;
 
 public interface MovieReviewRespository {
 
-	ResourceKey save(MovieReview movie);
+	void save(MovieReview movie);
 
     List<MovieReview> findBy(ResourceKey movieKey);
+
+    ResourceKey getKey(MovieReview movie);
 }

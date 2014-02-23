@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.youngstrategieslimited.frontrow.core.movie.Movie;
+import com.youngstrategieslimited.frontrow.core.movie.MovieRespository;
 
 @XmlRootElement
 public class MoviesViewModel {
@@ -15,9 +16,9 @@ public class MoviesViewModel {
 	public MoviesViewModel() {
 	}
 
-	public MoviesViewModel(List<Movie> movies) {
+	public MoviesViewModel(MovieRespository movieRepository, List<Movie> movies) {
 		for (Movie movie : movies) {
-			add(new MovieViewModel(movie));
+			add(new MovieViewModel(movieRepository.getKey(movie), movie));
 		}
 	}
 
