@@ -1,7 +1,5 @@
 package com.youngstrategieslimited.frontrow.shell.adapters.movierepository;
 
-import com.youngstrategieslimited.frontrow.core.movie.Movie;
-import com.youngstrategieslimited.frontrow.shell.adapters.movierepository.InMemoryMovieReviewRepository;
 import com.youngstrategieslimited.frontrow.core.movie.MovieReview;
 import com.youngstrategieslimited.frontrow.core.movie.ResourceKey;
 import java.util.List;

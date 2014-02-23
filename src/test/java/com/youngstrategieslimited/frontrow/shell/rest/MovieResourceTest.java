@@ -1,8 +1,5 @@
 package com.youngstrategieslimited.frontrow.shell.rest;
 
-import com.youngstrategieslimited.frontrow.shell.rest.MovieViewModel;
-import com.youngstrategieslimited.frontrow.shell.rest.MovieResource;
-import com.youngstrategieslimited.frontrow.shell.rest.ResourceIdentifier;
 import java.util.ArrayList;
 import java.util.List;
 

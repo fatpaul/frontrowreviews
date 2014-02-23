@@ -24,7 +24,7 @@ public class MovieResource {
     }
     
 	public MovieResource(MovieRespository movieRespository) {
-		this.movieRespository = movieRespository;
+		MovieResource.movieRespository = movieRespository;
 	}
 
 	@POST

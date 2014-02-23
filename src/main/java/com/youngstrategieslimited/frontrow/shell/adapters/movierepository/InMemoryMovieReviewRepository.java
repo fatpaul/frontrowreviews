@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class InMemoryMovieReviewRepository implements MovieReviewRespository {
 
-    private Map<String, MovieReview> movieReviewStore = new HashMap<String, MovieReview>();
+    private final Map<String, MovieReview> movieReviewStore = new HashMap<String, MovieReview>();
 
     @Override
     public void save(MovieReview review) {

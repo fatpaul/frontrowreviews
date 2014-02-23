@@ -11,7 +11,7 @@ import com.youngstrategieslimited.frontrow.core.movie.MovieRespository;
 @XmlRootElement
 public class MoviesViewModel {
 
-	private List<MovieViewModel> movies = new ArrayList<MovieViewModel>();
+	private final List<MovieViewModel> movies = new ArrayList<MovieViewModel>();
 
 	public MoviesViewModel() {
 	}

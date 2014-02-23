@@ -10,7 +10,7 @@ import com.youngstrategieslimited.frontrow.core.movie.MovieReview;
 @XmlRootElement
 public class MovieReviewsViewModel {
 
-	private List<MovieReviewViewModel> reviews = new ArrayList<MovieReviewViewModel>();
+	private final List<MovieReviewViewModel> reviews = new ArrayList<MovieReviewViewModel>();
 
 	public MovieReviewsViewModel() {
 	}

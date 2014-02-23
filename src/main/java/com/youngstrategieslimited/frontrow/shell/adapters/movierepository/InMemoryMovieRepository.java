@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class InMemoryMovieRepository implements MovieRespository {
 
-    private Map<String, Movie> movieStore = new HashMap<String, Movie>();
+    private final Map<String, Movie> movieStore = new HashMap<String, Movie>();
 
     @Override
     public void save(Movie movie) {
