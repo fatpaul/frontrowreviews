@@ -64,8 +64,8 @@
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase time="0" classname="com.youngstrategieslimited.frontrow.core.movie.ResourceKeyTest" name="resourceKeysAreEqual"/>
-  <testcase time="0.016" classname="com.youngstrategieslimited.frontrow.core.movie.ResourceKeyTest" name="defaultResourceKeyHasGeneratedKey"/>
-  <testcase time="0" classname="com.youngstrategieslimited.frontrow.core.movie.ResourceKeyTest" name="resourceKeyHasPassedKey"/>
+  <testcase time="0.017" classname="com.youngstrategieslimited.frontrow.core.movie.ResourceKeyTest" name="defaultResourceKeyHasGeneratedKey"/>
+  <testcase time="0.001" classname="com.youngstrategieslimited.frontrow.core.movie.ResourceKeyTest" name="resourceKeyHasPassedKey"/>
   <testcase time="0" classname="com.youngstrategieslimited.frontrow.core.movie.ResourceKeyTest" name="nullResourceKeysAreEqual"/>
   <testcase time="0" classname="com.youngstrategieslimited.frontrow.core.movie.ResourceKeyTest" name="nullAndPopulatedAreUnEqual"/>
 </testsuite>
